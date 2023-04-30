@@ -22,9 +22,10 @@ class RedisClientRepository {
         if (!this.redisConnected) this.redisClient.connect().then();
     };
 
-    setRefreshToken = async (refreshToken, userId, nickname) => {
+    setRefreshToken = async (refreshToken, { userId, nickname }) => {
         await this.initialize();
-        await this.redisClient.v4.set(refreshToken, { userId, nickname });
+        const value = JSON.stringify({ userId, nickname });
+        await this.redisClient.v4.set(refreshToken, value);
     };
 
     getRefreshToken = async (refreshToken) => {

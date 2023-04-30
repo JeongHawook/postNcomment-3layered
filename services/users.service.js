@@ -47,8 +47,8 @@ class UserService {
 
             if (!user || !passwordMatch) throw new AppError(4024);
 
-            const refreshToken = await createRefreshToken();
-            const accessToken = await createAccessToken(
+            const refreshToken = await this.createRefreshToken();
+            const accessToken = await this.createAccessToken(
                 user.userId,
                 user.nickname
             );
@@ -60,6 +60,7 @@ class UserService {
 
             return { accessToken, refreshToken };
         } catch (error) {
+            console.log(error);
             throw new AppError(4014);
         }
     };

@@ -50,6 +50,7 @@ class UserRepository {
 
             throw new AppError(5011);
         });
+
         return checkNickname;
     };
 }
