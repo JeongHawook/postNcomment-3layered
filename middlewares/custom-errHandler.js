@@ -2,8 +2,10 @@ const AppError = require("../utils/appError");
 const errorCodes = require("../config/error.json");
 
 function errorHandler(err, req, res, next) {
-    console.log(err);
+    console.log(err.errorCode);
+
     if (err instanceof AppError) {
+        console.log("coming?");
         const errorDetails = errorCodes[err.errorCode];
         if (errorDetails) {
             const { statusCode, message } = errorDetails;

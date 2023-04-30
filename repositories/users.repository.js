@@ -43,9 +43,11 @@ class UserRepository {
         }
     };
     check = async (nickname) => {
-        checkNickname = await Users.findOne({
+        const checkNickname = await Users.findOne({
             where: { nickname: nickname },
-        }).catch(() => {
+        }).catch((error) => {
+            console.log("확인 리포" + error);
+
             throw new AppError(5011);
         });
         return checkNickname;

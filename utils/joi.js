@@ -28,17 +28,18 @@ module.exports = {
             "string.empty": "이름을 확인해주세요.",
             "string.min": "이름을 확인해주세요.",
         }),
-        age: Joi.number().required().min(1).messages({
+        age: Joi.number().optional().min(1).messages({
             "string.base": "나이를 확인해주세요.",
             "string.empty": "나이가 비엇음.",
             "string.min": "나이를 확인해주세요.",
         }),
-        gender: Joi.string().required().max(6).messages({
+        gender: Joi.string().optional().max(6).messages({
             "string.base": "성별 확인해주세요.",
             "string.empty": "성별 확인해주세요.",
             "string.min": "성별 확인해주세요.",
         }),
         email: Joi.string().email({ tlds: { allow: false } }),
+        profileImage: Joi.string().optional(),
 
         //.message({       }),
     }),

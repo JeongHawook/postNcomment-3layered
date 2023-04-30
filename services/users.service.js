@@ -33,6 +33,7 @@ class UserService {
                 profileImage
             );
         } catch (error) {
+            console.log(error);
             throw new AppError(error.errorCode || 4023);
         }
     };

@@ -19,7 +19,6 @@ app.use((req, res, next) => {
 });
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 app.use("/", routes);
-
 app.use(errorHandler);
 
 const PORT = process.env.PORT;

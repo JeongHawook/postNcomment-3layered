@@ -1,5 +1,6 @@
 const UserService = require("../services/users.service");
 const { signupSchema, loginSchema } = require("../utils/joi");
+//const { tryCatch } = require("../utils/tryCatch");
 class UserController {
     userService = new UserService();
 
@@ -17,8 +18,8 @@ class UserController {
         } = await signupSchema.validateAsync(req.body).catch((error) => {
             return res.status(412).json({ message: error.message });
         });
-
-        const signup = this.userService.signup(
+        console.log(nickname);
+        const signup = await this.userService.signup(
             nickname,
             password,
             name,
