@@ -1,5 +1,6 @@
 const AppError = require("../utils/appError");
 const errorCodes = require("../config/error.json");
+const { ErrorReply } = require("redis");
 
 function errorHandler(err, req, res, next) {
     console.log(err.errorCode);
@@ -14,7 +15,8 @@ function errorHandler(err, req, res, next) {
                 .json({ message: `${message} ${err.errorCode}` });
         }
     }
-    res.status(500).send("데이터 형식이 옳바르지않습니다");
+    console.log(err);
+    return res.status(500).send("데이터 형식이 옳바르지않습니다");
 }
 
 module.exports = errorHandler;

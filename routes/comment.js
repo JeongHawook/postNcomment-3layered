@@ -6,7 +6,7 @@ const commentController = new CommentController();
 
 router.get("/", commentController.getCommets);
 router.post("/", authMiddleware, commentController.createComment);
-router.put("/:commentId", authMiddleware, commentController.updateComment);
-router.delete("/:commentId", authMiddleware, commentController.deleteComment);
+router.put("/:_commentId", authMiddleware, commentController.updateComment);
+router.delete("/:_commentId", authMiddleware, commentController.deleteComment);
 
 module.exports = router;

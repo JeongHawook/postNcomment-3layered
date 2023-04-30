@@ -19,7 +19,8 @@ class CommentService {
             // })
             return getComments;
         } catch (error) {
-            throw new AppError(error.errodCode || 4008);
+            console.log(error);
+            throw new AppError(error.errorCode || 4008);
         }
     };
     createComment = async (_postId, userId, nickname, comment) => {
@@ -34,7 +35,8 @@ class CommentService {
                 comment
             );
         } catch (error) {
-            throw new AppError(error.errodCode || 4009);
+            console.log(error);
+            throw new AppError(error.errorCode || 4009);
         }
     };
 
@@ -54,19 +56,11 @@ class CommentService {
 
             const auth = await this.authorize(_commentId, userId);
             if (auth === false) throw new AppError(4018);
-            //1. post 가 있는지 확인 //postRepo가져오면될슫
-            //2. comment가 있는지 확인//commentId로 조회
-            //3. comment의 userId 가 나인지 확인.//조회한 값의 userId랑 비교
 
-            //authorize
-            await this.commentRepository.updateComment(
-                userId,
-                _postId,
-                _commentId,
-                comment
-            );
+            await this.commentRepository.updateComment(_commentId, comment);
         } catch (error) {
-            throw new AppError(error.errodCode || 4012);
+            console.log(error);
+            throw new AppError(error.errorCode || 4012);
         }
     };
     deleteComment = async (userId, _commentId, _postId) => {
@@ -79,7 +73,7 @@ class CommentService {
 
             await this.commentRepository.deleteComment(_commentId);
         } catch (error) {
-            throw new AppError(4010);
+            throw new AppError(error.errorCode || 4010);
         }
     };
 }

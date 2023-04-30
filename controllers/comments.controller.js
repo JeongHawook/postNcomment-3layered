@@ -46,7 +46,8 @@ class CommentController {
             _commentId,
             comment
         );
-        res.staus(200).json({ message: "댓글 수정 성공" });
+
+        return res.status(200).json({ message: "댓글 수정 성공" });
     };
     deleteComment = async (req, res) => {
         const { userId } = res.locals.user;

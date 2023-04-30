@@ -6,9 +6,10 @@ class CommentRepository {
         const getComments = await Comments.findAll({
             where: {
                 postId: _postId,
-                order: [["createdAt", "DESC"]],
             },
-        }).catch(() => {
+            order: [["createdAt", "DESC"]],
+        }).catch((error) => {
+            console.log(error);
             throw new AppError(5004);
         });
         return getComments;
@@ -16,24 +17,25 @@ class CommentRepository {
 
     createComment = async (_postId, userId, nickname, comment) => {
         await Comments.create({
-            where: {
-                postId: _postId,
-                userId: userId,
-                nickname: nickname,
-                comment: comment,
-            },
-        }).catch(() => {
+            postId: _postId,
+            userId: userId,
+            nickname: nickname,
+            comment: comment,
+        }).catch((error) => {
+            console.log(error);
             throw new AppError(5005);
         });
     };
 
     updateComment = async (_commentId, comment) => {
+        console.log(_commentId, comment);
         await Comments.update(
-            { comment },
+            { comment: comment },
             {
                 where: { commentId: _commentId },
             }
-        ).catch(() => {
+        ).catch((error) => {
+            console.log(error);
             throw new AppError(5006);
         });
     };
@@ -45,11 +47,13 @@ class CommentRepository {
         );
     };
     getOneComment = async (_commentId) => {
+        console.log(_commentId);
         const getOneComment = await Comments.findByPk(_commentId).catch(
             (error) => {
                 throw new AppError(5004);
             }
         );
+
         return getOneComment;
     };
 }
