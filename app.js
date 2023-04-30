@@ -2,13 +2,13 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const port = 3300;
+require("express-async-errors");
 const errorHandler = require("./middlewares/custom-errHandler");
 const routes = require("./routes/index");
-const connect = require("./schemas");
+
 //const errorHandler = require("errorhandler");
 const cookieParser = require("cookie-parser");
 const { swaggerUi, specs } = require("./modules/swagger");
-//connect();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

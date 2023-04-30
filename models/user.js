@@ -42,13 +42,23 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true,
                 type: DataTypes.STRING,
             },
-            name: {
-                allowNull: false,
-                type: DataTypes.STRING,
+            email: {
+                type: DataTypes.INTEGER,
+                defaultValue: 0, //인증시 1
             },
             password: {
                 allowNull: false,
                 type: DataTypes.STRING,
+            },
+            createdAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
+            },
+            updatedAt: {
+                allowNull: false,
+                type: DataTypes.DATE,
+                defaultValue: DataTypes.NOW,
             },
         },
         {

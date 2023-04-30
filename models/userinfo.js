@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
             },
             userId: {
-                unique: true,
                 allowNull: false,
                 type: DataTypes.INTEGER,
             },
@@ -33,11 +32,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
             },
             age: {
-                allowNull: false, // NOT NULL
                 type: DataTypes.INTEGER,
             },
             gender: {
-                allowNull: false, // NOT NULL
                 type: DataTypes.STRING,
             },
             nickname: {
