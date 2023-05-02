@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "mocha"
+    "test": "jest --forceExit",
+    "test:silent": "jest --silent --forceExit",
+    "test:coverage": "jest --coverage --forceExit",
+    "test:unit": "jest __tests__/unit --forceExit",
+    "test:integration": "jest __tests__/integration --forceExit"
   },
   "author": "HawookJeong",
   "license": "ISC",
@@ -25,9 +29,6 @@
     "sequelize": "^6.31.0"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
-    "chai-http": "^4.3.0",
-    "mocha": "^10.2.0",
     "nodemon": "^2.0.22",
     "nyc": "^15.1.0",
     "sequelize-cli": "^6.6.0",

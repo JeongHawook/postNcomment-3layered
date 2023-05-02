@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const port = 3300;
+
 require("express-async-errors");
 const errorHandler = require("./middlewares/custom-errHandler");
 const routes = require("./routes/index");
-
-//const errorHandler = require("errorhandler");
 const cookieParser = require("cookie-parser");
 const { swaggerUi, specs } = require("./modules/swagger");
 
@@ -23,8 +21,8 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
-app.listen(port, () => {
-    console.log(port, "포트로 서버가 열렸어요!");
+app.listen(PORT, () => {
+    console.log(PORT, "포트로 서버가 열렸어요!");
 });
 
 module.exports = app;

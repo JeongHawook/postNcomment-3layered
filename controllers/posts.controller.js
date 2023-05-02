@@ -6,25 +6,17 @@ class PostController {
     postService = new PostService();
     likeService = new LikeService();
     getAllPosts = async (req, res) => {
-        try {
-            const getPosts = await this.postService.getPosts();
-            return res.status(200).json({ posts: getPosts });
-        } catch (error) {
-            throw new AppError(error.errorCode || 4000);
-            //고집부리기:  좋은점: 수정이 쉽다, 추가도 쉽다, 나중에 찾기도 쉽다, 간결하다, 확장성 재사용성. 이걸 못쓰게 날 더 설득해주세요
-        }
+        const getPosts = await this.postService.getPosts();
+
+        return res.status(200).json({ posts: getPosts });
     };
 
     getOnePost = async (req, res) => {
-        try {
-            const { _postId } = req.params;
+        const { _postId } = req.params;
 
-            const getPost = await this.postService.getPost(_postId);
+        const getPost = await this.postService.getPost(_postId);
 
-            return res.status(200).json({ post: getPost });
-        } catch (error) {
-            throw new AppError(error.errorCode || 4000);
-        }
+        return res.status(200).json({ post: getPost });
     };
 
     createPost = async (req, res) => {
@@ -71,10 +63,10 @@ class PostController {
             const { userId } = res.locals.user;
             const { _postId } = req.params;
 
-            await this.postService.deletePost(title, content, _postId, userId); //
+            await this.postService.deletePost(_postId, userId);
             return res
                 .status(200)
-                .json({ message: "게시글을 수정하였습니다." });
+                .json({ message: "게시글을 삭제하였습니다." });
         } catch (error) {
             throw new AppError(error.errorCode || 4010);
         }
